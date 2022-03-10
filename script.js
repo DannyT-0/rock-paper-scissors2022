@@ -4,6 +4,10 @@
 // create a function for all of this so you can call it 5 times
 
 const choices = ["rock", "paper", "scissors"];
+// let playerSelection = prompt(
+// 	"Which option would you like to choose: Rock, Paper, or Scissors"
+// );
+// let playerSelection = playerSelection.toLowerCase();
 
 function randomNumber() {
 	return Math.floor(Math.random() * 3);
@@ -11,5 +15,27 @@ function randomNumber() {
 
 function computerPlay() {
 	let compChoice = choices[randomNumber()];
-	console.log(compChoice);
+	return compChoice;
 }
+
+function playRound(playerSelection, computerSelection) {
+	computerSelection = computerPlay();
+	playerSelection = prompt(
+		"Which option would you like to choose: Rock, Paper, or Scissors"
+	);
+	playerSelection = playerSelection.toLowerCase();
+
+	if (playerSelection === computerSelection) {
+		console.log("it's a tie");
+	} else if (
+		(playerSelection === "rock" && computerSelection === "scissors") ||
+		(playerSelection === "paper" && computerSelection === "rock") ||
+		(playerSelection === "scissors" && computerSelection === "paper")
+	) {
+		console.log("You win!");
+	} else {
+		console.log("You lost!");
+	}
+}
+
+playRound();
