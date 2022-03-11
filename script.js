@@ -4,10 +4,8 @@
 // create a function for all of this so you can call it 5 times
 
 const choices = ["rock", "paper", "scissors"];
-// let playerSelection = prompt(
-// 	"Which option would you like to choose: Rock, Paper, or Scissors"
-// );
-// let playerSelection = playerSelection.toLowerCase();
+let playerScore = 0;
+let computerScore = 0;
 
 function randomNumber() {
 	return Math.floor(Math.random() * 3);
@@ -25,6 +23,15 @@ function playRound(playerSelection, computerSelection) {
 	);
 	playerSelection = playerSelection.toLowerCase();
 
+	// if (
+	// 	playerSelection !== "rock" ||
+	// 	playerSelection !== "scissors" ||
+	// 	playerSelection !== "paper"
+	// ) {
+	// 	alert("Please enter a valid choice");
+	// 	playerSelection = prompt(
+	// 		"Which option would you like to choose: Rock, Paper, or Scissors"
+	// 	);}
 	if (playerSelection === computerSelection) {
 		console.log("it's a tie");
 	} else if (
@@ -32,10 +39,26 @@ function playRound(playerSelection, computerSelection) {
 		(playerSelection === "paper" && computerSelection === "rock") ||
 		(playerSelection === "scissors" && computerSelection === "paper")
 	) {
-		console.log("You win!");
+		playerScore++;
+		console.log("You won this round", playerScore);
 	} else {
-		console.log("You lost!");
+		computerScore++;
+		console.log("The computer won this round", computerScore);
 	}
 }
 
-playRound();
+function game() {
+	for (let i = 0; i < 5; i++) {
+		playRound();
+	}
+
+	if (playerScore > computerScore) {
+		console.log("You win!");
+	} else if (computerScore > playerScore) {
+		console.log("The computer wins!");
+	} else {
+		console.log("It's a tie!");
+	}
+}
+
+game();
