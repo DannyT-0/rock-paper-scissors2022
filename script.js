@@ -3,7 +3,17 @@
 // If it works then make that variable a prompt so the player can enter their own choice
 // create a function for all of this so you can call it 5 times
 
-const choices = ["rock", "paper", "scissors"];
+const rockButton = document.querySelector("#rock");
+const paperButton = document.querySelector("#paper");
+const scissorsButton = document.querySelector("#scissors");
+
+rockButton.addEventListener("click", playRound());
+
+paperButton.addEventListener("click", playRound());
+
+scissorsButton.addEventListener("click", playRound());
+
+// const choices = ["rock", "paper", "scissors"];
 let playerScore = 0;
 let computerScore = 0;
 
@@ -12,32 +22,21 @@ function randomNumber() {
 }
 
 function computerPlay() {
+	const choices = ["rock", "paper", "scissors"];
 	let compChoice = choices[randomNumber()];
 	return compChoice;
 }
 
-function playRound(playerSelection, computerSelection) {
+function playRound(computerSelection) {
 	computerSelection = computerPlay();
-	playerSelection = prompt(
-		"Which option would you like to choose: Rock, Paper, or Scissors"
-	);
-	playerSelection = playerSelection.toLowerCase();
+	playerSelection = e.target;
 
-	// if (
-	// 	playerSelection !== "rock" ||
-	// 	playerSelection !== "scissors" ||
-	// 	playerSelection !== "paper"
-	// ) {
-	// 	alert("Please enter a valid choice");
-	// 	playerSelection = prompt(
-	// 		"Which option would you like to choose: Rock, Paper, or Scissors"
-	// 	);}
 	if (playerSelection === computerSelection) {
 		console.log("it's a tie");
 	} else if (
-		(playerSelection === "rock" && computerSelection === "scissors") ||
-		(playerSelection === "paper" && computerSelection === "rock") ||
-		(playerSelection === "scissors" && computerSelection === "paper")
+		(playerSelection === rockButton && computerSelection === "scissors") ||
+		(playerSelection === paperButton && computerSelection === "rock") ||
+		(playerSelection === scissorsButton && computerSelection === "paper")
 	) {
 		playerScore++;
 		console.log("You won this round", playerScore);
@@ -47,18 +46,18 @@ function playRound(playerSelection, computerSelection) {
 	}
 }
 
-function game() {
-	for (let i = 0; i < 5; i++) {
-		playRound();
-	}
+// function game() {
+// 	// for (let i = 0; i < 5; i++) {
+// 	// 	playRound();
+// 	// }
 
-	if (playerScore > computerScore) {
-		console.log("You win!");
-	} else if (computerScore > playerScore) {
-		console.log("The computer wins!");
-	} else {
-		console.log("It's a tie!");
-	}
-}
+// 	if (playerScore > computerScore) {
+// 		console.log("You win!");
+// 	} else if (computerScore > playerScore) {
+// 		console.log("The computer wins!");
+// 	} else {
+// 		console.log("It's a tie!");
+// 	}
+// }
 
-game();
+// game();
