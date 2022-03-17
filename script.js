@@ -3,17 +3,11 @@
 // If it works then make that variable a prompt so the player can enter their own choice
 // create a function for all of this so you can call it 5 times
 
-const rockButton = document.querySelector("#rock");
-const paperButton = document.querySelector("#paper");
-const scissorsButton = document.querySelector("#scissors");
-
-rockButton.addEventListener("click", playRound());
-
-paperButton.addEventListener("click", playRound());
-
-scissorsButton.addEventListener("click", playRound());
-
-// const choices = ["rock", "paper", "scissors"];
+const buttons = document.querySelectorAll("button");
+const scoreCard = document.querySelector("#scoreCard");
+const computerPick = document.querySelector("#computerPick");
+const playerPick = document.querySelector("#playerPick");
+const roundResult = document.querySelector("#roundResult");
 let playerScore = 0;
 let computerScore = 0;
 
@@ -24,27 +18,52 @@ function randomNumber() {
 function computerPlay() {
 	const choices = ["rock", "paper", "scissors"];
 	let compChoice = choices[randomNumber()];
-	return compChoice;
+	computerPick.textContent = compChoice;
+	return (computerPick.textContent = compChoice);
 }
 
-function playRound(computerSelection) {
-	computerSelection = computerPlay();
-	playerSelection = e.target;
+buttons.forEach((button) => {
+	button.addEventListener("click", function playRound() {
+		computerSelection = computerPlay();
 
-	if (playerSelection === computerSelection) {
-		console.log("it's a tie");
-	} else if (
-		(playerSelection === rockButton && computerSelection === "scissors") ||
-		(playerSelection === paperButton && computerSelection === "rock") ||
-		(playerSelection === scissorsButton && computerSelection === "paper")
-	) {
-		playerScore++;
-		console.log("You won this round", playerScore);
-	} else {
-		computerScore++;
-		console.log("The computer won this round", computerScore);
-	}
-}
+		if (playerScore == 5) {
+			roundResult.textContent = "The player has won the game!";
+		} else if (computerScore == 5) {
+			roundResult.textContent = "The computer has won the game!";
+		} else if (button.id === computerSelection) {
+			computerPick.textContent = `The computer chose ${computerSelection}`;
+			playerPick.textContent = `You chose ${button.id}`;
+			scoreCard.textContent = `The current score is: You ${playerScore} Computer Score ${computerScore}`;
+			roundResult.textContent = "This round was a tie!";
+		} else if (
+			(button.id === "paper" && computerSelection === "rock") ||
+			(button.id === "rock" && computerSelection === "scissors") ||
+			(button.id === "scissors" && computerSelection === "paper")
+		) {
+			playerScore++;
+			computerPick.textContent = `The computer chose ${computerSelection}`;
+			playerPick.textContent = `You chose ${button.id}`;
+			scoreCard.textContent = `The current score is: You ${playerScore} Computer Score ${computerScore}`;
+			roundResult.textContent = "You won this round!";
+		} else {
+			computerScore++;
+			computerPick.textContent = `The computer chose ${computerSelection}`;
+			playerPick.textContent = `You chose ${button.id}`;
+			scoreCard.textContent = `The current score is: You ${playerScore} Computer Score ${computerScore}`;
+			roundResult.textContent = "The computer won this round!";
+		}
+	});
+});
+
+// function playerSelection(e) {
+// 	if (e.target == rockButton) {
+// 		return "rock";
+// 	} else if (e.target == paperButton) {
+// 		return "paper";
+// 	} else {
+// 		return "scissors";
+// 	}
+// }
 
 // function game() {
 // 	// for (let i = 0; i < 5; i++) {
