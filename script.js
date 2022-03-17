@@ -54,29 +54,3 @@ buttons.forEach((button) => {
 		}
 	});
 });
-
-// function playerSelection(e) {
-// 	if (e.target == rockButton) {
-// 		return "rock";
-// 	} else if (e.target == paperButton) {
-// 		return "paper";
-// 	} else {
-// 		return "scissors";
-// 	}
-// }
-
-// function game() {
-// 	// for (let i = 0; i < 5; i++) {
-// 	// 	playRound();
-// 	// }
-
-// 	if (playerScore > computerScore) {
-// 		console.log("You win!");
-// 	} else if (computerScore > playerScore) {
-// 		console.log("The computer wins!");
-// 	} else {
-// 		console.log("It's a tie!");
-// 	}
-// }
-
-// game();
